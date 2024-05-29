@@ -11,7 +11,7 @@ import UIKit
 class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     var searchQuery: String?
-    var results: [Photo] = []
+    var results: [MediaPhoto] = []
     
     @IBOutlet weak var imageTableView: UITableView!
     
@@ -51,10 +51,10 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
         let jsonDecoder = JSONDecoder()
         
         do {
-            let mediaSearchResult = try jsonDecoder.decode(ImageFileDetails.self, from: data)
+            let photos = try jsonDecoder.decode(MediaPhoto.self, from: data)
             DispatchQueue.main.async {
-                self.results = ImageFileDetails.photos
-                self.tableView.reloadData()
+                self.results.append(photos)
+                self.imageTableView.reloadData()
             }
         } catch {
             print("JSON Decoding Error: \(error)")
@@ -66,7 +66,7 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MediaCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath)
         let photo = results[indexPath.row]
         cell.textLabel?.text = photo.photographer
         // Load small image for the cell

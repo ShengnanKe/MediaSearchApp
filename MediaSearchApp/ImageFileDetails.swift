@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct ImageFileDetails: Codable {
-    
+struct MediaSearchResult: Codable {
     enum CodingKeys: String, CodingKey {
         case page
         case perPage = "per_page"
@@ -16,27 +15,15 @@ struct ImageFileDetails: Codable {
         case totalResults = "total_results"
         case nextPage = "next_page"
     }
-    
+
     let page: Int
     let perPage: Int
-    let photos: [Photo]
+    let photos: [MediaPhoto]
     let totalResults: Int
     let nextPage: String?
 }
 
-struct Photo: Codable {
-    let id: Int
-    let width: Int
-    let height: Int
-    let url: String
-    let photographer: String
-    let photographerUrl: String
-    let photographerId: Int
-    let avgColor: String
-    let src: PhotoSrc
-    let liked: Bool
-    let alt: String
-
+struct MediaPhoto: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case width
@@ -50,18 +37,21 @@ struct Photo: Codable {
         case liked
         case alt
     }
+
+    let id: Int
+    let width: Int
+    let height: Int
+    let url: String
+    let photographer: String
+    let photographerUrl: String
+    let photographerId: Int
+    let avgColor: String
+    let src: PhotoSrc
+    let liked: Bool
+    let alt: String
 }
 
 struct PhotoSrc: Codable {
-    let original: String
-    let large2x: String
-    let large: String
-    let medium: String
-    let small: String
-    let portrait: String
-    let landscape: String
-    let tiny: String
-
     enum CodingKeys: String, CodingKey {
         case original
         case large2x
@@ -72,4 +62,13 @@ struct PhotoSrc: Codable {
         case landscape
         case tiny
     }
+
+    let original: String
+    let large2x: String
+    let large: String
+    let medium: String
+    let small: String
+    let portrait: String
+    let landscape: String
+    let tiny: String
 }
