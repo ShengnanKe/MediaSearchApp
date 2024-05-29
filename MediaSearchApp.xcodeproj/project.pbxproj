@@ -9,23 +9,39 @@
 /* Begin PBXBuildFile section */
 		4443F7452C06C23D0017D629 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F7442C06C23D0017D629 /* AppDelegate.swift */; };
 		4443F7472C06C23D0017D629 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F7462C06C23D0017D629 /* SceneDelegate.swift */; };
-		4443F7492C06C23D0017D629 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F7482C06C23D0017D629 /* ViewController.swift */; };
 		4443F74C2C06C23D0017D629 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 4443F74B2C06C23D0017D629 /* Base */; };
 		4443F74F2C06C23D0017D629 /* MediaSearchApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4443F74D2C06C23D0017D629 /* MediaSearchApp.xcdatamodeld */; };
 		4443F7512C06C23E0017D629 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4443F7502C06C23E0017D629 /* Assets.xcassets */; };
 		4443F7542C06C23E0017D629 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 4443F7532C06C23E0017D629 /* Base */; };
+		4443F75C2C06C4FE0017D629 /* ImageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F75B2C06C4FE0017D629 /* ImageSearchViewController.swift */; };
+		4443F75E2C06C50E0017D629 /* VideoSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F75D2C06C50E0017D629 /* VideoSearchViewController.swift */; };
+		4443F7602C06C5A00017D629 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F75F2C06C5A00017D629 /* BookmarkViewController.swift */; };
+		4443F7622C06C78E0017D629 /* ImageSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F7612C06C78E0017D629 /* ImageSearchResultsViewController.swift */; };
+		4443F7642C06C7A20017D629 /* VideoSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F7632C06C7A20017D629 /* VideoSearchResultsViewController.swift */; };
+		4443F7662C06C7C80017D629 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F7652C06C7C80017D629 /* VideoDetailViewController.swift */; };
+		4443F7682C06C7D90017D629 /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F7672C06C7D90017D629 /* ImageDetailViewController.swift */; };
+		4443F76A2C06DF930017D629 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F7692C06DF930017D629 /* NetworkManager.swift */; };
+		4443F7702C06E4E10017D629 /* ImageFileDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F76F2C06E4E10017D629 /* ImageFileDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4443F7412C06C23D0017D629 /* MediaSearchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaSearchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4443F7442C06C23D0017D629 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4443F7462C06C23D0017D629 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4443F7482C06C23D0017D629 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4443F74B2C06C23D0017D629 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4443F74E2C06C23D0017D629 /* MediaSearchApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MediaSearchApp.xcdatamodel; sourceTree = "<group>"; };
 		4443F7502C06C23E0017D629 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4443F7532C06C23E0017D629 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4443F7552C06C23F0017D629 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4443F75B2C06C4FE0017D629 /* ImageSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchViewController.swift; sourceTree = "<group>"; };
+		4443F75D2C06C50E0017D629 /* VideoSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSearchViewController.swift; sourceTree = "<group>"; };
+		4443F75F2C06C5A00017D629 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
+		4443F7612C06C78E0017D629 /* ImageSearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchResultsViewController.swift; sourceTree = "<group>"; };
+		4443F7632C06C7A20017D629 /* VideoSearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSearchResultsViewController.swift; sourceTree = "<group>"; };
+		4443F7652C06C7C80017D629 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
+		4443F7672C06C7D90017D629 /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
+		4443F7692C06DF930017D629 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4443F76F2C06E4E10017D629 /* ImageFileDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +76,20 @@
 			children = (
 				4443F7442C06C23D0017D629 /* AppDelegate.swift */,
 				4443F7462C06C23D0017D629 /* SceneDelegate.swift */,
-				4443F7482C06C23D0017D629 /* ViewController.swift */,
 				4443F74A2C06C23D0017D629 /* Main.storyboard */,
 				4443F7502C06C23E0017D629 /* Assets.xcassets */,
 				4443F7522C06C23E0017D629 /* LaunchScreen.storyboard */,
 				4443F7552C06C23F0017D629 /* Info.plist */,
 				4443F74D2C06C23D0017D629 /* MediaSearchApp.xcdatamodeld */,
+				4443F76F2C06E4E10017D629 /* ImageFileDetails.swift */,
+				4443F75B2C06C4FE0017D629 /* ImageSearchViewController.swift */,
+				4443F7612C06C78E0017D629 /* ImageSearchResultsViewController.swift */,
+				4443F7672C06C7D90017D629 /* ImageDetailViewController.swift */,
+				4443F7692C06DF930017D629 /* NetworkManager.swift */,
+				4443F75D2C06C50E0017D629 /* VideoSearchViewController.swift */,
+				4443F7632C06C7A20017D629 /* VideoSearchResultsViewController.swift */,
+				4443F7652C06C7C80017D629 /* VideoDetailViewController.swift */,
+				4443F75F2C06C5A00017D629 /* BookmarkViewController.swift */,
 			);
 			path = MediaSearchApp;
 			sourceTree = "<group>";
@@ -141,10 +165,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4443F7492C06C23D0017D629 /* ViewController.swift in Sources */,
+				4443F75C2C06C4FE0017D629 /* ImageSearchViewController.swift in Sources */,
+				4443F75E2C06C50E0017D629 /* VideoSearchViewController.swift in Sources */,
 				4443F7452C06C23D0017D629 /* AppDelegate.swift in Sources */,
+				4443F7622C06C78E0017D629 /* ImageSearchResultsViewController.swift in Sources */,
+				4443F76A2C06DF930017D629 /* NetworkManager.swift in Sources */,
+				4443F7662C06C7C80017D629 /* VideoDetailViewController.swift in Sources */,
+				4443F7702C06E4E10017D629 /* ImageFileDetails.swift in Sources */,
 				4443F74F2C06C23D0017D629 /* MediaSearchApp.xcdatamodeld in Sources */,
+				4443F7602C06C5A00017D629 /* BookmarkViewController.swift in Sources */,
 				4443F7472C06C23D0017D629 /* SceneDelegate.swift in Sources */,
+				4443F7642C06C7A20017D629 /* VideoSearchResultsViewController.swift in Sources */,
+				4443F7682C06C7D90017D629 /* ImageDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +336,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,6 +365,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
