@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SZj-AM-MFG">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
@@ -14,11 +14,11 @@
             <objects>
                 <viewController id="eot-7V-QcY" customClass="ImageSearchViewController" customModule="MediaSearchApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="50m-3s-2lc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for Pictures" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mC-Dj-9ka">
-                                <rect key="frame" x="90" y="123" width="213" height="60"/>
+                                <rect key="frame" x="90" y="94" width="844" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Luz-9h-ac1"/>
                                     <constraint firstAttribute="height" constant="60" id="XW7-yn-ny7"/>
@@ -28,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="DgW-Fl-dfY">
-                                <rect key="frame" x="30" y="248" width="333" height="60"/>
+                                <rect key="frame" x="30" y="219" width="964" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="LIN-36-j1Q"/>
                                     <constraint firstAttribute="height" constant="60" id="yl0-2I-USo"/>
@@ -55,27 +55,44 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l43-Eo-TRh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1649.6183206106869" y="86.619718309859152"/>
+            <point key="canvasLocation" x="1649" y="87"/>
         </scene>
         <!--Image Search Results View Controller-->
         <scene sceneID="xHi-KT-UtW">
             <objects>
                 <viewController id="08I-xN-Pf1" customClass="ImageSearchResultsViewController" customModule="MediaSearchApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q8j-AG-FPP">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZE9-Pk-2Xq">
-                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <rect key="frame" x="0.0" y="74" width="1024" height="1222"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="92" id="9in-7j-tcU">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="92"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImageCell" rowHeight="159" id="9in-7j-tcU" customClass="ImageDetailTableViewCell" customModule="MediaSearchApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="1024" height="159"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9in-7j-tcU" id="ucJ-lt-zWL">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="92"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="159"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jzq-vU-rth">
+                                                    <rect key="frame" x="610" y="15" width="240" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EO-3I-8I2">
+                                                    <rect key="frame" x="80" y="53" width="450" height="52"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ImageView" destination="jzq-vU-rth" id="jw1-nr-xGX"/>
+                                            <outlet property="imageNameLabel" destination="0EO-3I-8I2" id="zCV-jA-OZ7"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -91,39 +108,76 @@
                     </view>
                     <navigationItem key="navigationItem" id="BBf-dd-C0b"/>
                     <connections>
+                        <outlet property="imageTableView" destination="ZE9-Pk-2Xq" id="nM1-X7-98c"/>
                         <segue destination="CgG-bK-zHz" kind="show" identifier="showImageDetails" id="17Q-8f-2Qz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gsP-6v-eb8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2932.06106870229" y="86.619718309859152"/>
+            <point key="canvasLocation" x="2898" y="87"/>
         </scene>
         <!--Image Detail View Controller-->
         <scene sceneID="WEB-w0-4sR">
             <objects>
                 <viewController id="CgG-bK-zHz" customClass="ImageDetailViewController" customModule="MediaSearchApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cTI-QL-GaM">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8f-0I-oHT">
+                                <rect key="frame" x="250" y="234" width="524" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.50099378819999996" green="0.75753128530000002" blue="0.9602152705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G6c-ft-yPz">
+                                <rect key="frame" x="190" y="438" width="644" height="534"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldm-ug-azp">
+                                <rect key="frame" x="469" y="1092" width="86" height="34"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="star" catalog="system" title=""/>
+                                <connections>
+                                    <action selector="bookmarkTapped:" destination="CgG-bK-zHz" eventType="touchUpInside" id="0rB-n8-mMn"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="pcA-Rq-SBz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="G6c-ft-yPz" firstAttribute="leading" secondItem="pcA-Rq-SBz" secondAttribute="leading" constant="190" id="5fw-XC-zm2"/>
+                            <constraint firstItem="G6c-ft-yPz" firstAttribute="top" secondItem="o8f-0I-oHT" secondAttribute="bottom" constant="180" id="B2M-uz-Gav"/>
+                            <constraint firstItem="o8f-0I-oHT" firstAttribute="top" secondItem="pcA-Rq-SBz" secondAttribute="top" constant="160" id="HQ9-aj-Qhz"/>
+                            <constraint firstItem="pcA-Rq-SBz" firstAttribute="trailing" secondItem="G6c-ft-yPz" secondAttribute="trailing" constant="190" id="NMs-MT-aoN"/>
+                            <constraint firstItem="pcA-Rq-SBz" firstAttribute="bottom" secondItem="ldm-ug-azp" secondAttribute="bottom" constant="170" id="Uy6-J8-2Hw"/>
+                            <constraint firstItem="ldm-ug-azp" firstAttribute="top" secondItem="G6c-ft-yPz" secondAttribute="bottom" constant="120" id="aIW-7D-sUo"/>
+                            <constraint firstItem="ldm-ug-azp" firstAttribute="leading" secondItem="pcA-Rq-SBz" secondAttribute="leading" constant="469" id="cy0-lq-4aM"/>
+                            <constraint firstItem="pcA-Rq-SBz" firstAttribute="trailing" secondItem="o8f-0I-oHT" secondAttribute="trailing" constant="250" id="fEX-xJ-4Of"/>
+                            <constraint firstItem="pcA-Rq-SBz" firstAttribute="trailing" secondItem="ldm-ug-azp" secondAttribute="trailing" constant="469" id="fLv-Sg-LD6"/>
+                            <constraint firstItem="o8f-0I-oHT" firstAttribute="leading" secondItem="pcA-Rq-SBz" secondAttribute="leading" constant="250" id="xMK-L8-ZoB"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="V0e-a2-tRV"/>
+                    <connections>
+                        <outlet property="bookmarkButton" destination="ldm-ug-azp" id="Xsm-Tq-IXS"/>
+                        <outlet property="photoImageView" destination="G6c-ft-yPz" id="GQc-6P-tCz"/>
+                        <outlet property="photoNameLabel" destination="o8f-0I-oHT" id="GKV-FP-LAw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M1L-uP-4ta" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4162.5954198473282" y="86.619718309859152"/>
+            <point key="canvasLocation" x="4008" y="87"/>
         </scene>
         <!--Video Search View Controller-->
         <scene sceneID="fV9-2B-33o">
             <objects>
                 <viewController id="wBQ-cq-LAN" customClass="VideoSearchViewController" customModule="MediaSearchApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9ac-QA-2bN">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for Videos" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJZ-mt-eb4">
-                                <rect key="frame" x="90" y="123" width="213" height="60"/>
+                                <rect key="frame" x="90" y="94" width="844" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="3Lv-jl-e8e"/>
                                 </constraints>
@@ -132,7 +186,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="wvJ-ZW-VWU">
-                                <rect key="frame" x="30" y="248" width="333" height="60"/>
+                                <rect key="frame" x="30" y="219" width="964" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="d6h-jM-BYB"/>
                                 </constraints>
@@ -157,14 +211,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e2b-7K-tIL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1718.3206106870227" y="893.66197183098598"/>
+            <point key="canvasLocation" x="1649" y="894"/>
         </scene>
         <!--Video Search Results View Controller-->
         <scene sceneID="L73-e9-kKM">
             <objects>
                 <viewController id="xdr-Pg-a9R" customClass="VideoSearchResultsViewController" customModule="MediaSearchApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Thl-bf-buL">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="jvP-KY-ByZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -183,7 +237,7 @@
             <objects>
                 <viewController id="4A1-uu-SDl" customClass="VideoDetailViewController" customModule="MediaSearchApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YaQ-qt-TU5">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="oI2-Tm-4En"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -199,7 +253,7 @@
             <objects>
                 <viewController id="QdA-9s-UMS" customClass="BookmarkViewController" customModule="MediaSearchApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dGz-fa-HJW">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Gip-nw-sXe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -208,7 +262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QsN-YC-N5e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="834" y="1805"/>
+            <point key="canvasLocation" x="722" y="1786"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="IjO-ec-vof">
@@ -216,6 +270,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="SZj-AM-MFG" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kLE-Nw-2CC">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -236,7 +291,7 @@
                     <tabBarItem key="tabBarItem" title="Image" image="photo.artframe" catalog="system" id="iBY-J3-kiZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8K1-H0-bRo">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="24" width="1024" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -255,7 +310,7 @@
                     <tabBarItem key="tabBarItem" title="Video" image="video" catalog="system" id="6qG-6h-CRT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lks-dY-qut">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="24" width="1024" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -265,11 +320,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zxG-VW-ufS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="791.60305343511448" y="893.66197183098598"/>
+            <point key="canvasLocation" x="722" y="893"/>
         </scene>
     </scenes>
     <resources>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="video" catalog="system" width="128" height="82"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

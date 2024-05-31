@@ -31,7 +31,7 @@ class NetworkManager: NSObject {
         case noData
     }
     
-    func request(urlString: String, method: HTTPMethod, body: Data?, completion: @escaping (Result<Data, Error>) -> Void) {
+    func request(urlString: String, method: HTTPMethod, headers: [String: String]?, body: Data?, completion: @escaping (Result<Data, Error>) -> Void) {
         
         // 1. Step - Make URL
         guard let url = URL(string: urlString) else {
@@ -48,6 +48,14 @@ class NetworkManager: NSObject {
             request.httpBody = body
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
+        
+        if let headers = headers {
+            for (key, value) in headers {
+                request.setValue(value, forHTTPHeaderField: key)
+            }
+        }
+        
+        request.timeoutInterval = 20.0
         
         // Base authentication
         /*
