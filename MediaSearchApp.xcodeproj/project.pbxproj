@@ -27,6 +27,8 @@
 		4443F77E2C0831310017D629 /* MediaBookmarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F77D2C0831310017D629 /* MediaBookmarkModel.swift */; };
 		4443F7812C0832020017D629 /* MediaBookmark+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F77F2C0832020017D629 /* MediaBookmark+CoreDataClass.swift */; };
 		4443F7822C0832020017D629 /* MediaBookmark+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F7802C0832020017D629 /* MediaBookmark+CoreDataProperties.swift */; };
+		444D88B92C0D096500F1048C /* VideoFileDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D88B82C0D096500F1048C /* VideoFileDetails.swift */; };
+		444D88BB2C0D098B00F1048C /* VideoDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D88BA2C0D098B00F1048C /* VideoDetailTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		4443F77D2C0831310017D629 /* MediaBookmarkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaBookmarkModel.swift; sourceTree = "<group>"; };
 		4443F77F2C0832020017D629 /* MediaBookmark+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MediaBookmark+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4443F7802C0832020017D629 /* MediaBookmark+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MediaBookmark+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		444D88B82C0D096500F1048C /* VideoFileDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFileDetails.swift; sourceTree = "<group>"; };
+		444D88BA2C0D098B00F1048C /* VideoDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,14 +99,16 @@
 				4443F77D2C0831310017D629 /* MediaBookmarkModel.swift */,
 				4443F7692C06DF930017D629 /* NetworkManager.swift */,
 				4443F7792C082B950017D629 /* DBManager.swift */,
-				4443F74D2C06C23D0017D629 /* MediaSearchApp.xcdatamodeld */,
 				4443F76F2C06E4E10017D629 /* ImageFileDetails.swift */,
 				4443F75B2C06C4FE0017D629 /* ImageSearchViewController.swift */,
 				4443F7612C06C78E0017D629 /* ImageSearchResultsViewController.swift */,
 				4443F7712C08048D0017D629 /* ImageDetailTableViewCell.swift */,
 				4443F7672C06C7D90017D629 /* ImageDetailViewController.swift */,
+				4443F74D2C06C23D0017D629 /* MediaSearchApp.xcdatamodeld */,
+				444D88B82C0D096500F1048C /* VideoFileDetails.swift */,
 				4443F75D2C06C50E0017D629 /* VideoSearchViewController.swift */,
 				4443F7632C06C7A20017D629 /* VideoSearchResultsViewController.swift */,
+				444D88BA2C0D098B00F1048C /* VideoDetailTableViewCell.swift */,
 				4443F7652C06C7C80017D629 /* VideoDetailViewController.swift */,
 				4443F75F2C06C5A00017D629 /* BookmarkViewController.swift */,
 			);
@@ -188,9 +194,11 @@
 				4443F7822C0832020017D629 /* MediaBookmark+CoreDataProperties.swift in Sources */,
 				4443F7622C06C78E0017D629 /* ImageSearchResultsViewController.swift in Sources */,
 				4443F76A2C06DF930017D629 /* NetworkManager.swift in Sources */,
+				444D88B92C0D096500F1048C /* VideoFileDetails.swift in Sources */,
 				4443F7662C06C7C80017D629 /* VideoDetailViewController.swift in Sources */,
 				4443F7702C06E4E10017D629 /* ImageFileDetails.swift in Sources */,
 				4443F74F2C06C23D0017D629 /* MediaSearchApp.xcdatamodeld in Sources */,
+				444D88BB2C0D098B00F1048C /* VideoDetailTableViewCell.swift in Sources */,
 				4443F77A2C082B950017D629 /* DBManager.swift in Sources */,
 				4443F7602C06C5A00017D629 /* BookmarkViewController.swift in Sources */,
 				4443F7472C06C23D0017D629 /* SceneDelegate.swift in Sources */,

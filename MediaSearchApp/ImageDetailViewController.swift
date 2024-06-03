@@ -73,7 +73,8 @@ class ImageDetailViewController: UIViewController {
                 filePath: filePath.path
             )
             if DBManager.shared.addBookmark(bookmark: bookmarkModel) {
-                print("Bookmark added successfully!")
+                print("Bookmark added.")
+                //print("Bookmark added. File URL: \(filePath)") // Print file URL
             } else {
                 print("Failed to add bookmark.")
             }
@@ -85,11 +86,11 @@ class ImageDetailViewController: UIViewController {
     func updateBookmarkButtonAppearance() {
         DispatchQueue.main.async {
             if self.isBookmarked {
-                self.bookmarkButton.backgroundColor = .green // Change to any color to indicate bookmarked
-                self.bookmarkButton.setTitle("Bookmarked", for: .normal) // Optional: Change button title
+                self.bookmarkButton.backgroundColor = .gray // when bookmarked
+                self.bookmarkButton.setTitle("Bookmarked", for: .normal) //
             } else {
-                self.bookmarkButton.backgroundColor = .gray // Change to default color
-                self.bookmarkButton.setTitle("Bookmark", for: .normal) // Optional: Change button title
+                self.bookmarkButton.backgroundColor = .clear // clear bg
+                self.bookmarkButton.setTitle("Bookmark", for: .normal) //
             }
         }
     }

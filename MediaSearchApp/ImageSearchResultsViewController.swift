@@ -15,7 +15,7 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
     var searchQuery: String?
     var isFetching = false
     var results: [MediaPhoto] = []
-    // need a page# to keep track of the page and load new items through the api
+    // need a page # to keep track of the page and load new items through the api
     var curPageNum = 1
     
     override func viewDidLoad() {
@@ -114,20 +114,6 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
         let selectedPhoto = results[indexPath.row]
         performSegue(withIdentifier: "showImageDetails", sender: selectedPhoto)
     }
-    
-    //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    //        //print("called")
-    //        let position = scrollView.contentOffset.y
-    //        if position > (imageTableView.contentSize.height - 100 - scrollView.frame.size.height){
-    //            guard !isFetching else { return }
-    //            //self.isFetching = true
-    //            // fetch more data
-    //            //print("fetch more data")
-    //            curPageNum += 1
-    //            fetchSearchResults(page: curPageNum)
-    //        }
-    //
-    //    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showImageDetails",
