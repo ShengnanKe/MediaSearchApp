@@ -30,7 +30,7 @@ class DBManager: NSObject {
         do {
             try managedContext.save()
             print("Data saved!")
-            //NotificationCenter.default.post(name: NSNotification.Name("BookmarksUpdated"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name("BookmarksUpdated"), object: nil)
             return true
         } catch {
             print("Failed to save context: \(error)")
@@ -50,6 +50,8 @@ class DBManager: NSObject {
         newBookmark.url = bookmark.url
         newBookmark.filePath = bookmark.filePath
         
+        print("Adding bookmark with file path: \(bookmark.filePath)")
+        
         return saveData()
     }
     
@@ -58,5 +60,25 @@ class DBManager: NSObject {
         return saveData()
     }
     
-    
+    func fetchBookmarks() -> [MediaBookmarkModel] {
+        let fetchRequest: NSFetchRequest<MediaBookmark> = MediaBookmark.fetchRequest()
+        
+        do {
+            let bookmarkEntities = try managedContext.fetch(fetchRequest)
+            let bookmarks = bookmarkEntities.map { entity in
+                MediaBookmarkModel(
+                    name: entity.name ?? "",
+                    url: entity.url ?? "",
+                    filePath: entity.filePath ?? ""
+                )
+            }
+            for bookmark in bookmarks {
+                print("Fetched bookmark with file path: \(bookmark.filePath)")
+            }
+            return bookmarks
+        } catch {
+            print("Failed to fetch bookmarks: \(error)")
+            return []
+        }
+    }
 }

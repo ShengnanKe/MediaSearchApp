@@ -62,19 +62,20 @@ class ImageDetailViewController: UIViewController {
         
         let fileManager = FileManager.default
         let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let filePath = documentDirectory.appendingPathComponent("\(UUID().uuidString).jpg")
+        let fileName = "\(UUID().uuidString).jpg"
+        let filePath = documentDirectory.appendingPathComponent(fileName)
         
         do {
             try imageData.write(to: filePath)
+            print("Image saved at path: \(filePath.path)") // Log the file path
             
             let bookmarkModel = MediaBookmarkModel(
                 name: mediaItem.alt,
                 url: mediaItem.src.original, // original
-                filePath: filePath.path
+                filePath: fileName // Save only the file name
             )
             if DBManager.shared.addBookmark(bookmark: bookmarkModel) {
-                print("Bookmark added.")
-                //print("Bookmark added. File URL: \(filePath)") // Print file URL
+                print("Bookmark added. File URL: \(filePath.path)") // Print file URL
             } else {
                 print("Failed to add bookmark.")
             }
@@ -82,7 +83,7 @@ class ImageDetailViewController: UIViewController {
             print("Error saving bookmark: \(error)")
         }
     }
-    
+
     func updateBookmarkButtonAppearance() {
         DispatchQueue.main.async {
             if self.isBookmarked {

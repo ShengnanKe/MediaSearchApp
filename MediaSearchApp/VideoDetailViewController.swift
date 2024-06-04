@@ -71,34 +71,34 @@ class VideoDetailViewController: UIViewController {
     }
     
     func saveToBookmarks(_ mediaItem: MediaVideo) {
-        guard let imageUrl = URL(string: mediaItem.image) else {
-            print("Invalid image URL")
+        guard let videoUrl = URL(string: mediaItem.videoFiles.first?.link ?? "") else {
+            print("Invalid video URL")
             return
         }
         
         let fileManager = FileManager.default
         let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let filePath = documentDirectory.appendingPathComponent("\(UUID().uuidString).jpg")
+        let fileName = "\(UUID().uuidString).mp4"
+        let filePath = documentDirectory.appendingPathComponent(fileName)
         
-        // Load image data asynchronously
-        URLSession.shared.dataTask(with: imageUrl) { data, response, error in
-            guard let imageData = data, error == nil else {
-                print("Failed to load image data: \(String(describing: error))")
+        URLSession.shared.downloadTask(with: videoUrl) { localURL, response, error in
+            guard let localURL = localURL, error == nil else {
+                print("Failed to download video: \(String(describing: error))")
                 return
             }
             
             do {
-                try imageData.write(to: filePath)
+                try fileManager.moveItem(at: localURL, to: filePath)
+                print("Video saved to: \(filePath.path)")
                 
                 let bookmarkModel = MediaBookmarkModel(
                     name: mediaItem.user.name,
                     url: mediaItem.url,
-                    filePath: filePath.path
+                    filePath: fileName // Save only the file name
                 )
                 DispatchQueue.main.async {
                     if DBManager.shared.addBookmark(bookmark: bookmarkModel) {
-                        print("Bookmark added.")
-                        //print("Bookmark added. File URL: \(filePath)") // Print file URL
+                        print("Bookmark added. File URL: \(filePath)") // Print file URL
                     } else {
                         print("Failed to add bookmark.")
                     }
