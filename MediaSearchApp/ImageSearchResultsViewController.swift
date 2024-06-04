@@ -34,10 +34,6 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
     
     func fetchSearchResults(page: Int) {
         
-        //        DispatchQueue.main.async {
-        //            self.imageTableView.reloadData()
-        //        }
-        
         let networkManager = NetworkManager.shared
         guard let query = searchQuery, !isFetching else { return }
         //        guard let query = searchQuery else { return }
@@ -94,7 +90,6 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
         let photo = results[indexPath.row]
         cell.imageNameLabel.text = photo.alt
         
-        // Load small image for the cell
         if let url = URL(string: photo.src.small) { // small size
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data, error == nil {
