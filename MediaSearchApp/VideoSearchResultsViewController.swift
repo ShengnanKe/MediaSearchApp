@@ -80,8 +80,6 @@ class VideoSearchResultsViewController: UIViewController, UITableViewDelegate, U
         let video = results[indexPath.row]
         cell.videoNameLabel.text = video.url // no name just url
         
-        // Load image for the cell
-        
         if let url = URL(string: video.image) {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data, error == nil {
