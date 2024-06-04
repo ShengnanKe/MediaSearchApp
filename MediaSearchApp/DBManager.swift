@@ -55,9 +55,20 @@ class DBManager: NSObject {
         return saveData()
     }
     
-    func deleteBookmark(bookmark: MediaBookmark) -> Bool {
-        managedContext.delete(bookmark)
-        return saveData()
+    func deleteBookmark(filePath: String) -> Bool {
+        let fetchRequest: NSFetchRequest<MediaBookmark> = MediaBookmark.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "filePath == %@", filePath)
+        
+        do {
+            let bookmarks = try managedContext.fetch(fetchRequest)
+            for bookmark in bookmarks {
+                managedContext.delete(bookmark)
+            }
+            return saveData()
+        } catch {
+            print("Failed to fetch bookmarks for deletion: \(error)")
+            return false
+        }
     }
     
     func fetchBookmarks() -> [MediaBookmarkModel] {

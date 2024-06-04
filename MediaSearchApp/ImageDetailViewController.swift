@@ -12,6 +12,9 @@ class ImageDetailViewController: UIViewController {
     var mediaItem: MediaPhoto?
     var isBookmarked: Bool = false
     
+    // for display bookmarked items details
+    var bookmark: MediaBookmarkModel?
+    
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var photoNameLabel: UILabel!
     @IBOutlet weak var bookmarkButton: UIButton!
@@ -22,6 +25,11 @@ class ImageDetailViewController: UIViewController {
         if let mediaItem = mediaItem {
             photoNameLabel.text = mediaItem.alt
             loadImage(from: mediaItem.src.original)
+        }
+        
+        if let bookmark = bookmark {
+            photoNameLabel.text = bookmark.name
+            loadImageBookmark(from: bookmark.filePath)
         }
         
         updateBookmarkButtonAppearance()
@@ -39,6 +47,17 @@ class ImageDetailViewController: UIViewController {
             case .failure(let error):
                 print("Network error: \(error)")
             }
+        }
+    }
+    
+    func loadImageBookmark(from path: String) {
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fullPath = documentDirectory.appendingPathComponent(path).path
+        
+        if let image = UIImage(contentsOfFile: fullPath) {
+            photoImageView.image = image
+        } else {
+            print("Failed to load image from path: \(fullPath)")
         }
     }
     
@@ -83,7 +102,7 @@ class ImageDetailViewController: UIViewController {
             print("Error saving bookmark: \(error)")
         }
     }
-
+    
     func updateBookmarkButtonAppearance() {
         DispatchQueue.main.async {
             if self.isBookmarked {
@@ -95,5 +114,4 @@ class ImageDetailViewController: UIViewController {
             }
         }
     }
-    
 }

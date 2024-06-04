@@ -4,6 +4,7 @@
 //
 //  Created by KKNANXX on 5/28/24.
 //
+
 import UIKit
 import CoreData
 import AVFoundation
@@ -12,6 +13,7 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var bookmarkTableView: UITableView!
     
+    // Array to hold bookmark data models
     var bookmarks: [MediaBookmarkModel] = []
     
     override func viewDidLoad() {
@@ -19,32 +21,38 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
         
         bookmarkTableView.delegate = self
         bookmarkTableView.dataSource = self
-        
         bookmarkTableView.rowHeight = 200
         
         NotificationCenter.default.addObserver(self, selector: #selector(bookmarksUpdated), name: NSNotification.Name("BookmarksUpdated"), object: nil)
         
+        // Fetch bookmarks from Core Data
         fetchBookmarks()
     }
     
     deinit {
+        // Remove observer when view controller is deallocated
         NotificationCenter.default.removeObserver(self)
     }
     
     @objc func bookmarksUpdated() {
+        // Fetch bookmarks when notified of an update
         fetchBookmarks()
     }
     
     func fetchBookmarks() {
+        // Fetch bookmarks from Core Data using DBManager
         bookmarks = DBManager.shared.fetchBookmarks()
+        // Reload table view data
         bookmarkTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // Return the number of bookmarks
         return bookmarks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Dequeue a reusable cell
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkCell", for: indexPath) as? BookmarkTableViewCell else {
             return UITableViewCell()
         }
@@ -59,6 +67,7 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
         // Log the file path
         print("Loading image from path: \(fullPath)")
         
+        // Check if the file exists before loading
         if FileManager.default.fileExists(atPath: fullPath) {
             if bookmark.filePath.hasSuffix(".jpg") {
                 // Handle image file
@@ -79,6 +88,7 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    // Function to generate thumbnail for video file
     func generateThumbnail(path: String) -> UIImage? {
         let asset = AVAsset(url: URL(fileURLWithPath: path))
         let imageGenerator = AVAssetImageGenerator(asset: asset)
@@ -95,28 +105,57 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
             return nil
         }
     }
+    
+    // Enable swipe to delete functionality
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] action, view, completionHandler in
+            guard let self = self else { return }
+            self.deleteBookmark(at: indexPath)
+            completionHandler(true)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
+    func deleteBookmark(at indexPath: IndexPath) {
+        guard indexPath.row < bookmarks.count else {
+            print("Invalid index path")
+            return
+        }
+        
+        let bookmarkToDelete = bookmarks[indexPath.row]
+        
+        if DBManager.shared.deleteBookmark(filePath: bookmarkToDelete.filePath) {
+            bookmarks.remove(at: indexPath.row)
+            bookmarkTableView.deleteRows(at: [indexPath], with: .fade)
+        } else {
+            print("Failed to delete bookmark.")
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedBookmark = bookmarks[indexPath.row]
+        
+        if selectedBookmark.url.contains("pexels.com/photos") {
+            performSegue(withIdentifier: "bookmarkShowImageDetail", sender: selectedBookmark)
+        } else if selectedBookmark.url.contains("pexels.com/video") {
+            performSegue(withIdentifier: "bookmarkShowVideoDetail", sender: selectedBookmark)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let bookmark = sender as? MediaBookmarkModel {
+            if segue.identifier == "bookmarkShowImageDetail",
+               let detailVC = segue.destination as? ImageDetailViewController {
+                detailVC.bookmark = bookmark
+            } else if segue.identifier == "bookmarkShowVideoDetail",
+                      let detailVC = segue.destination as? VideoDetailViewController {
+                detailVC.bookmark = bookmark
+            }
+        }
+    }
+
+
 }
 
 
-
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let selectedBookmark = bookmarks[indexPath.row]
-//
-//        if selectedBookmark.url.contains("pexels.com/photo") {
-//            performSegue(withIdentifier: "showImageDetail", sender: selectedBookmark)
-//        } else if selectedBookmark.url.contains("pexels.com/video") {
-//            performSegue(withIdentifier: "showVideoDetail", sender: selectedBookmark)
-//        }
-//    }
-
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let bookmark = sender as? MediaBookmarkModel {
-//            if segue.identifier == "showImageDetail",
-//               let detailVC = segue.destination as? ImageDetailViewController {
-//                detailVC.mediaItem = MediaPhoto(alt: bookmark.name, url: bookmark.url)
-//            } else if segue.identifier == "showVideoDetail",
-//                      let detailVC = segue.destination as? VideoDetailViewController {
-//                detailVC.mediaItem = MediaVideo(url: bookmark.url)
-//            }
-//        }
-//    }

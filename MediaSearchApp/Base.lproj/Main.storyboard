@@ -133,24 +133,24 @@
             <objects>
                 <viewController id="YMB-gC-cHp" customClass="ImageDetailViewController" customModule="MediaSearchApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hed-Sy-8rZ">
-                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                        <rect key="frame" x="0.0" y="0.0" width="704" height="995.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dOd-5s-PRM">
-                                <rect key="frame" x="20" y="195.5" width="780" height="280"/>
+                                <rect key="frame" x="20" y="121.5" width="289" height="280"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="280" id="W9z-lg-BTG"/>
                                     <constraint firstAttribute="width" constant="390" id="XDl-MZ-MbG"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6E9-Gr-8Lf">
-                                <rect key="frame" x="20" y="124" width="780" height="21.5"/>
+                                <rect key="frame" x="20" y="50" width="289" height="21.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4C-7L-JTg">
-                                <rect key="frame" x="100" y="525.5" width="620" height="50"/>
+                                <rect key="frame" x="100" y="451.5" width="129" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Meo-QA-sF3"/>
                                 </constraints>
@@ -304,17 +304,17 @@
             <objects>
                 <viewController id="4A1-uu-SDl" customClass="VideoDetailViewController" customModule="MediaSearchApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YaQ-qt-TU5">
-                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                        <rect key="frame" x="0.0" y="0.0" width="704" height="995.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9y-GP-rt0">
-                                <rect key="frame" x="20" y="174" width="780" height="21.5"/>
+                                <rect key="frame" x="20" y="100" width="289" height="21.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Cm-Vz-CB8">
-                                <rect key="frame" x="100" y="565.5" width="620" height="35"/>
+                                <rect key="frame" x="100" y="491.5" width="129" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="star" catalog="system" title="Bookmark"/>
                                 <connections>
@@ -322,7 +322,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aGl-LT-Scu">
-                                <rect key="frame" x="20" y="245.5" width="780" height="270"/>
+                                <rect key="frame" x="20" y="171.5" width="289" height="270"/>
                                 <color key="backgroundColor" systemColor="systemGray3Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="390" id="Ngo-3E-Xwc"/>
@@ -419,6 +419,8 @@
                     <tabBarItem key="tabBarItem" systemItem="bookmarks" id="N8h-ny-gxi"/>
                     <connections>
                         <outlet property="bookmarkTableView" destination="YuZ-6h-5v3" id="OwM-e4-J4W"/>
+                        <segue destination="YMB-gC-cHp" kind="show" identifier="bookmarkShowImageDetail" id="Vw2-la-f9f"/>
+                        <segue destination="4A1-uu-SDl" kind="show" identifier="bookmarkShowVideoDetail" id="h8C-oh-maY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QsN-YC-N5e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -484,6 +486,10 @@
             <point key="canvasLocation" x="722" y="893"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="h8C-oh-maY"/>
+        <segue reference="Vw2-la-f9f"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <image name="star" catalog="system" width="128" height="116"/>

@@ -13,6 +13,8 @@ class VideoDetailViewController: UIViewController {
     var mediaItem: MediaVideo?
     var isBookmarked: Bool = false
     
+    var bookmark: MediaBookmarkModel?
+    
     @IBOutlet weak var videoPlayerView: UIView!
     @IBOutlet weak var videoNameLabel: UILabel!
     @IBOutlet weak var bookmarkButton: UIButton!
@@ -26,6 +28,11 @@ class VideoDetailViewController: UIViewController {
         if let mediaItem = mediaItem {
             videoNameLabel.text = mediaItem.user.name
             loadVideo(from: mediaItem.videoFiles.first?.link ?? "")
+        }
+        
+        if let bookmark = bookmark {
+            videoNameLabel.text = bookmark.name
+            loadVideoBookmark(from: bookmark.filePath)
         }
         
         updateBookmarkButtonAppearance()
@@ -44,6 +51,18 @@ class VideoDetailViewController: UIViewController {
                 print("Network error: \(error)")
             }
         }
+    }
+    
+    func loadVideoBookmark(from path: String) {
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fullPath = documentDirectory.appendingPathComponent(path).path
+        
+        let url = URL(fileURLWithPath: fullPath)
+        let player = AVPlayer(url: url)
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = videoPlayerView.bounds
+        videoPlayerView.layer.addSublayer(playerLayer)
+        player.play()
     }
     
     func playVideo(from url: String) {
