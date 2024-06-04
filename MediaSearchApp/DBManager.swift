@@ -30,6 +30,7 @@ class DBManager: NSObject {
         do {
             try managedContext.save()
             print("Data saved!")
+            //NotificationCenter.default.post(name: NSNotification.Name("BookmarksUpdated"), object: nil)
             return true
         } catch {
             print("Failed to save context: \(error)")
@@ -38,7 +39,6 @@ class DBManager: NSObject {
         }
     }
     
-    // Add a MediaBookmark
     func addBookmark(bookmark: MediaBookmarkModel) -> Bool {
         guard let entity = NSEntityDescription.entity(forEntityName: "MediaBookmark", in: managedContext) else {
             print("Failed to create entity description for MediaBookmark")
@@ -53,9 +53,10 @@ class DBManager: NSObject {
         return saveData()
     }
     
-    // Delete a MediaBookmark
     func deleteBookmark(bookmark: MediaBookmark) -> Bool {
         managedContext.delete(bookmark)
         return saveData()
     }
+    
+    
 }

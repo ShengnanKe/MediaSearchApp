@@ -29,6 +29,7 @@
 		4443F7822C0832020017D629 /* MediaBookmark+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443F7802C0832020017D629 /* MediaBookmark+CoreDataProperties.swift */; };
 		444D88B92C0D096500F1048C /* VideoFileDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D88B82C0D096500F1048C /* VideoFileDetails.swift */; };
 		444D88BB2C0D098B00F1048C /* VideoDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D88BA2C0D098B00F1048C /* VideoDetailTableViewCell.swift */; };
+		444D88BD2C0DA53900F1048C /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D88BC2C0DA53900F1048C /* BookmarkTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		4443F7802C0832020017D629 /* MediaBookmark+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MediaBookmark+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		444D88B82C0D096500F1048C /* VideoFileDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFileDetails.swift; sourceTree = "<group>"; };
 		444D88BA2C0D098B00F1048C /* VideoDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailTableViewCell.swift; sourceTree = "<group>"; };
+		444D88BC2C0DA53900F1048C /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				444D88BA2C0D098B00F1048C /* VideoDetailTableViewCell.swift */,
 				4443F7652C06C7C80017D629 /* VideoDetailViewController.swift */,
 				4443F75F2C06C5A00017D629 /* BookmarkViewController.swift */,
+				444D88BC2C0DA53900F1048C /* BookmarkTableViewCell.swift */,
 			);
 			path = MediaSearchApp;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				4443F7642C06C7A20017D629 /* VideoSearchResultsViewController.swift in Sources */,
 				4443F77E2C0831310017D629 /* MediaBookmarkModel.swift in Sources */,
 				4443F7682C06C7D90017D629 /* ImageDetailViewController.swift in Sources */,
+				444D88BD2C0DA53900F1048C /* BookmarkTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

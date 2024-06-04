@@ -7,6 +7,7 @@
 
 
 import UIKit
+import CoreData
 
 class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate{
     
@@ -26,6 +27,9 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
         imageTableView.rowHeight = 150
         
         fetchSearchResults(page: curPageNum)
+        
+        let url = NSPersistentContainer.defaultDirectoryURL()
+        print("url: ", url)
     }
     
     func fetchSearchResults(page: Int) {
@@ -91,7 +95,7 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
         cell.imageNameLabel.text = photo.alt
         
         // Load small image for the cell
-        if let url = URL(string: photo.src.small) {
+        if let url = URL(string: photo.src.small) { // small size
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data, error == nil {
                     DispatchQueue.main.async {

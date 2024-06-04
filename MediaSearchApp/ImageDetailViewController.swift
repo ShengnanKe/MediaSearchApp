@@ -51,7 +51,7 @@ class ImageDetailViewController: UIViewController {
             if isBookmarked {
                 saveToBookmarks(mediaItem)
             } else {
-                // Optionally, handle unbookmarking logic here
+                //DBManager.deleteBookmark(mediaItem)
                 print("Item unbookmarked")
             }
         }
@@ -69,7 +69,7 @@ class ImageDetailViewController: UIViewController {
             
             let bookmarkModel = MediaBookmarkModel(
                 name: mediaItem.alt,
-                url: mediaItem.src.original,
+                url: mediaItem.src.original, // original
                 filePath: filePath.path
             )
             if DBManager.shared.addBookmark(bookmark: bookmarkModel) {

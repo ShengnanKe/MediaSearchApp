@@ -14,8 +14,6 @@ class ImageSearchViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageSearchBar.delegate = self
-        
-        // Do any additional setup after loading the view.
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
