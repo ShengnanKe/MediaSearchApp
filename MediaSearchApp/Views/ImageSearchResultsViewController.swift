@@ -37,9 +37,9 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
         let networkManager = NetworkManager.shared
         guard let query = searchQuery, !isFetching else { return }
         //        guard let query = searchQuery else { return }
-        let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        //let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         // page = 20
-        let urlString = "https://api.pexels.com/v1/search?query=\(encodedQuery)&per_page=20&page=\(page)"
+        let urlString = "https://api.pexels.com/v1/search?query=\(query)&per_page=20&page=\(page)"
         let headers = ["Authorization": "Ou1dFhdt9Gl2Rcu7Xfv4MzThpOZaoXYaNBpy123sCWCCJWmBqUx0m1tG"]
         
         isFetching = true
@@ -99,7 +99,8 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
                 }
             }.resume()
         }
-        if indexPath.row == results.count - 1 && !isFetching {
+        
+        if indexPath.row == results.count - 1 && !isFetching { //
             curPageNum += 1
             fetchSearchResults(page: curPageNum)
         }

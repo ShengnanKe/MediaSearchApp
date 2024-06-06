@@ -83,9 +83,9 @@ class DBManager: NSObject {
                     filePath: entity.filePath ?? ""
                 )
             }
-            for bookmark in bookmarks {
-                print("Fetched bookmark with file path: \(bookmark.filePath)")
-            }
+//            for bookmark in bookmarks {
+//                print("Fetched bookmark with file path: \(bookmark.filePath)")
+//            }
             return bookmarks
         } catch {
             print("Failed to fetch bookmarks: \(error)")

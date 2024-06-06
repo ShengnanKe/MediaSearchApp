@@ -82,7 +82,9 @@ class ImageDetailViewController: UIViewController {
         let fileManager = FileManager.default
         let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileName = "\(UUID().uuidString).jpg"
-        let filePath = documentDirectory.appendingPathComponent(fileName)
+        
+        let folder = documentDirectory.appendingPathComponent("photos")
+        let filePath = folder.appendingPathComponent(fileName)
         
         do {
             try imageData.write(to: filePath)

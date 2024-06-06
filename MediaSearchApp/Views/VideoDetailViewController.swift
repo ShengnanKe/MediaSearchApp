@@ -98,7 +98,9 @@ class VideoDetailViewController: UIViewController {
         let fileManager = FileManager.default
         let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileName = "\(UUID().uuidString).mp4"
-        let filePath = documentDirectory.appendingPathComponent(fileName)
+        
+        let folder = documentDirectory.appendingPathComponent("videos")
+        let filePath = folder.appendingPathComponent(fileName)
         
         URLSession.shared.downloadTask(with: videoUrl) { localURL, response, error in
             guard let localURL = localURL, error == nil else {

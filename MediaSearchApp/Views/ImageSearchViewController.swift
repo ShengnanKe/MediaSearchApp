@@ -10,6 +10,7 @@ import UIKit
 class ImageSearchViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var imageSearchBar: UISearchBar!
+    var viewModel = ImageSearchViewModel() // Add the ViewModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class ImageSearchViewController: UIViewController, UISearchBarDelegate {
            let resultsVC = segue.destination as? ImageSearchResultsViewController,
            let query = sender as? String {
             resultsVC.searchQuery = query
+            resultsVC.viewModel = viewModel // Pass the ViewModel to the results VC
         }
     }
 

@@ -33,8 +33,8 @@ class VideoSearchResultsViewController: UIViewController, UITableViewDelegate, U
     func fetchSearchResults(page: Int) {
         let networkManager = NetworkManager.shared
         guard let query = searchQuery, !isFetching else { return }
-        let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        let urlString = "https://api.pexels.com/videos/search?query=\(encodedQuery)&per_page=20&page=\(page)"
+        //let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let urlString = "https://api.pexels.com/videos/search?query=\(query)&per_page=20&page=\(page)"
         let headers = ["Authorization": "Ou1dFhdt9Gl2Rcu7Xfv4MzThpOZaoXYaNBpy123sCWCCJWmBqUx0m1tG"]
         
         isFetching = true

@@ -55,7 +55,7 @@ class NetworkManager: NSObject {
             }
         }
         
-        request.timeoutInterval = 20.0
+        //request.timeoutInterval = 20.0
         
         // Base authentication
         /*
