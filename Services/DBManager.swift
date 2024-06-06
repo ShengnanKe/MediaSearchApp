@@ -24,6 +24,7 @@ class DBManager: NSObject {
         let appDelegate = application.delegate as? AppDelegate
         let container = appDelegate?.persistentContainer
         self.managedContext = container?.viewContext
+        
     }
     
     func saveData() -> Bool {
@@ -92,4 +93,5 @@ class DBManager: NSObject {
             return []
         }
     }
+
 }

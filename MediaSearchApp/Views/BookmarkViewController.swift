@@ -13,7 +13,7 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var bookmarkTableView: UITableView!
     
-    var bookmarks: [MediaBookmarkModel] = []
+    var viewModel = BookmarkViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +36,13 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func fetchBookmarks() {
-        bookmarks = DBManager.shared.fetchBookmarks()
-        bookmarkTableView.reloadData()
+        viewModel.fetchBookmarks { [weak self] in
+            self?.bookmarkTableView.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bookmarks.count
+        return viewModel.bookmarks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,15 +50,25 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
             return UITableViewCell()
         }
         
-        let bookmark = bookmarks[indexPath.row]
+        let bookmark = viewModel.bookmarks[indexPath.row]
         cell.bookmarkNameLabel.text = bookmark.name
+        print("Configuring cell for bookmark: \(bookmark.name)")
         
         let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fullPath = documentDirectory.appendingPathComponent(bookmark.filePath).path
-
-        print("Loading image from path: \(fullPath)")
         
-    
+        // Determine the appropriate folder (photos or videos) based on the file extension
+        let folder: URL
+        if bookmark.filePath.hasSuffix(".jpg") {
+            folder = documentDirectory.appendingPathComponent("photos")
+        } else if bookmark.filePath.hasSuffix(".mp4") {
+            folder = documentDirectory.appendingPathComponent("videos")
+        } else {
+            folder = documentDirectory
+        }
+        
+        let fullPath = folder.appendingPathComponent(bookmark.filePath).path
+        print("Loading file from path: \(fullPath)")
+        
         if FileManager.default.fileExists(atPath: fullPath) {
             if bookmark.filePath.hasSuffix(".jpg") {
                 if let image = UIImage(contentsOfFile: fullPath) {
@@ -96,32 +107,19 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] action, view, completionHandler in
             guard let self = self else { return }
-            self.deleteBookmark(at: indexPath)
-            completionHandler(true)
+            self.viewModel.deleteBookmark(at: indexPath) { success in
+                if success {
+                    self.bookmarkTableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+                completionHandler(success)
+            }
         }
         
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
-    func deleteBookmark(at indexPath: IndexPath) {
-        guard indexPath.row < bookmarks.count else {
-            print("Invalid index path")
-            return
-        }
-        print(indexPath.row)
-        let bookmarkToDelete = bookmarks[indexPath.row]
-        
-        if DBManager.shared.deleteBookmark(filePath: bookmarkToDelete.filePath) {
-            bookmarks.remove(at: indexPath.row)
-            bookmarkTableView.deleteRows(at: [indexPath], with: .automatic)
-            self.fetchBookmarks()
-        } else {
-            print("Failed to delete bookmark.")
-        }
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedBookmark = bookmarks[indexPath.row]
+        let selectedBookmark = viewModel.bookmarks[indexPath.row]
         
         if selectedBookmark.url.contains("pexels.com/photos") {
             performSegue(withIdentifier: "bookmarkShowImageDetail", sender: selectedBookmark)
@@ -134,14 +132,16 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
         if let bookmark = sender as? MediaBookmarkModel {
             if segue.identifier == "bookmarkShowImageDetail",
                let detailVC = segue.destination as? ImageDetailViewController {
-                detailVC.bookmark = bookmark
+                let viewModel = ImageDetailViewModel()
+                viewModel.bookmark = bookmark
+                detailVC.viewModel = viewModel
             } else if segue.identifier == "bookmarkShowVideoDetail",
                       let detailVC = segue.destination as? VideoDetailViewController {
-                detailVC.bookmark = bookmark
+                let viewModel = VideoDetailViewModel()
+                viewModel.bookmark = bookmark
+                detailVC.viewModel = viewModel
             }
         }
     }
 
 }
-
-

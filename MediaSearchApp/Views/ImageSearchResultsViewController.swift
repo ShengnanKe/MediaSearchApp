@@ -6,80 +6,42 @@
 //
 
 
-import UIKit
 import CoreData
+import UIKit
 
-class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate{
+class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var imageTableView: UITableView!
     
     var searchQuery: String?
-    var isFetching = false
-    var results: [MediaPhoto] = []
-    // need a page # to keep track of the page and load new items through the api
-    var curPageNum = 1
+    var viewModel: ImageSearchViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imageTableView.delegate = self
         imageTableView.dataSource = self
         
-        imageTableView.rowHeight = 150
-        
-        fetchSearchResults(page: curPageNum)
+        imageTableView.rowHeight = 200
         
         let url = NSPersistentContainer.defaultDirectoryURL()
-        print("url: ", url)
-    }
-    
-    func fetchSearchResults(page: Int) {
+        print("coredata_url: ", url)
         
-        let networkManager = NetworkManager.shared
-        guard let query = searchQuery, !isFetching else { return }
-        //        guard let query = searchQuery else { return }
-        //let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        // page = 20
-        let urlString = "https://api.pexels.com/v1/search?query=\(query)&per_page=20&page=\(page)"
-        let headers = ["Authorization": "Ou1dFhdt9Gl2Rcu7Xfv4MzThpOZaoXYaNBpy123sCWCCJWmBqUx0m1tG"]
-        
-        isFetching = true
-        
-        networkManager.request(urlString: urlString, method: .GET, headers: headers, body: nil, completion: { [weak self] result in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.isFetching = false
+        if let query = searchQuery {
+            viewModel.searchImages(query: query) { [weak self] result in
                 switch result {
-                case .success(let data):
-                    // check if the data is being loaded coorrect
-                    //print("Received data: \(String(data: data, encoding: .utf8) ?? "No data")")
-                    self.jsonDecode(data: data)
+                case .success:
+                    DispatchQueue.main.async {
+                        self?.imageTableView.reloadData()
+                    }
                 case .failure(let error):
-                    print("Network error: \(error)")
+                    print("Error: \(error)")
                 }
             }
-        })
-    }
-    
-    func jsonDecode(data: Data) {
-        let jsonDecoder = JSONDecoder()
-        
-        do {
-            let searchResults = try jsonDecoder.decode(MediaSearchResult.self, from: data)
-            DispatchQueue.main.async {
-                self.results.append(contentsOf: searchResults.photos)
-                //= searchResults.photos
-                //self.results.append(photos)
-                self.imageTableView.reloadData()
-                self.curPageNum += 1
-            }
-        } catch {
-            print("JSON Decoding Error: \(error)")
         }
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return results.count
+        return viewModel.searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,10 +49,10 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
             return UITableViewCell()
         }
         
-        let photo = results[indexPath.row]
+        let photo = viewModel.searchResults[indexPath.row]
         cell.imageNameLabel.text = photo.alt
         
-        if let url = URL(string: photo.src.small) { // small size
+        if let url = URL(string: photo.src.small) {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data, error == nil {
                     DispatchQueue.main.async {
@@ -99,19 +61,27 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
                 }
             }.resume()
         }
-        
-        if indexPath.row == results.count - 1 && !isFetching { //
-            curPageNum += 1
-            fetchSearchResults(page: curPageNum)
+        if indexPath.row == viewModel.searchResults.count - 1 && !viewModel.isFetching {
+            viewModel.currentPage += 1
+            if let query = searchQuery {
+                viewModel.searchImages(query: query) { [weak self] result in
+                    switch result {
+                    case .success:
+                        DispatchQueue.main.async {
+                            self?.imageTableView.reloadData()
+                        }
+                    case .failure(let error):
+                        print("Error: \(error)")
+                    }
+                }
+            }
         }
         
         return cell
     }
     
-    // https://www.kodeco.com/5786-uitableview-infinite-scrolling-tutorial
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedPhoto = results[indexPath.row]
+        let selectedPhoto = viewModel.searchResults[indexPath.row]
         performSegue(withIdentifier: "showImageDetails", sender: selectedPhoto)
     }
     
@@ -119,8 +89,10 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
         if segue.identifier == "showImageDetails",
            let detailVC = segue.destination as? ImageDetailViewController,
            let photo = sender as? MediaPhoto {
-            detailVC.mediaItem = photo
+            let viewModel = ImageDetailViewModel()
+            viewModel.mediaItem = photo
+            detailVC.viewModel = viewModel
         }
     }
-}
 
+}

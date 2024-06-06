@@ -96,8 +96,8 @@
                                                 <constraint firstItem="rBH-3I-Bt8" firstAttribute="leading" secondItem="IP7-Ln-eXL" secondAttribute="trailing" constant="30" id="GNM-Ai-96l"/>
                                                 <constraint firstItem="rBH-3I-Bt8" firstAttribute="top" secondItem="ucJ-lt-zWL" secondAttribute="topMargin" constant="30" id="Kfd-KN-4b6"/>
                                                 <constraint firstItem="IP7-Ln-eXL" firstAttribute="top" secondItem="ucJ-lt-zWL" secondAttribute="topMargin" constant="30" id="X7H-oY-ws1"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="rBH-3I-Bt8" secondAttribute="trailing" constant="30" id="ceE-Bp-eUZ"/>
                                                 <constraint firstItem="IP7-Ln-eXL" firstAttribute="leading" secondItem="ucJ-lt-zWL" secondAttribute="leadingMargin" constant="20" id="eks-jB-DGg"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="rBH-3I-Bt8" secondAttribute="trailing" constant="30" id="nQR-FT-5c0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -374,33 +374,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="820" height="225"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoB-Gv-HfC">
-                                                    <rect key="frame" x="36" y="41" width="47" height="80"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d15-b9-nfB">
+                                                    <rect key="frame" x="118" y="48" width="661" height="128"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="80" id="6qP-Pp-LV0"/>
+                                                        <constraint firstAttribute="height" constant="128" id="xSg-CE-zc5"/>
                                                     </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Am5-vd-HEq">
+                                                    <rect key="frame" x="41" y="48" width="47" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cY9-e2-4cq">
-                                                    <rect key="frame" x="113" y="41" width="661" height="128"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="128" id="L18-4z-U2P"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hoB-Gv-HfC" firstAttribute="leading" secondItem="UBU-SC-sUy" secondAttribute="leadingMargin" constant="20" id="R9c-Fb-Dqh"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="cY9-e2-4cq" secondAttribute="trailing" constant="30" id="bVQ-ig-7a5"/>
-                                                <constraint firstItem="hoB-Gv-HfC" firstAttribute="top" secondItem="UBU-SC-sUy" secondAttribute="topMargin" constant="30" id="cgF-p6-6vT"/>
-                                                <constraint firstItem="cY9-e2-4cq" firstAttribute="top" secondItem="UBU-SC-sUy" secondAttribute="topMargin" constant="30" id="kid-Wf-RFD"/>
-                                                <constraint firstItem="cY9-e2-4cq" firstAttribute="leading" secondItem="hoB-Gv-HfC" secondAttribute="trailing" constant="30" id="mHr-QL-s4E"/>
+                                                <constraint firstItem="d15-b9-nfB" firstAttribute="leading" secondItem="Am5-vd-HEq" secondAttribute="trailing" constant="30" id="3Zt-mY-k95"/>
+                                                <constraint firstItem="Am5-vd-HEq" firstAttribute="leading" secondItem="UBU-SC-sUy" secondAttribute="leadingMargin" constant="25" id="QLB-Nb-tY0"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="d15-b9-nfB" secondAttribute="trailing" constant="25" id="eZk-ST-6va"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="bookmarkImageView" destination="cY9-e2-4cq" id="1g1-O2-LBO"/>
-                                            <outlet property="bookmarkNameLabel" destination="hoB-Gv-HfC" id="Gmj-FL-ggd"/>
+                                            <outlet property="bookmarkImageView" destination="d15-b9-nfB" id="ehh-SG-s7t"/>
+                                            <outlet property="bookmarkNameLabel" destination="Am5-vd-HEq" id="9hi-5y-qZx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -424,7 +419,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QsN-YC-N5e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="721.39534883720933" y="1785.8369098712446"/>
+            <point key="canvasLocation" x="720.73170731707319" y="1785.7627118644068"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="IjO-ec-vof">

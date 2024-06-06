@@ -10,23 +10,18 @@ import Foundation
 class BookmarkViewModel {
     var bookmarks: [MediaBookmarkModel] = []
     
-    func fetchBookmarks(completion: @escaping (Result<Void, Error>) -> Void) {
+    func fetchBookmarks(completion: @escaping () -> Void) {
         bookmarks = DBManager.shared.fetchBookmarks()
-        completion(.success(()))
+        completion()
     }
     
-    func deleteBookmark(at index: Int, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard index < bookmarks.count else {
-            completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Index out of range"])))
-            return
+    func deleteBookmark(at indexPath: IndexPath, completion: @escaping (Bool) -> Void) {
+        let bookmarkToDelete = bookmarks[indexPath.row]
+        let success = DBManager.shared.deleteBookmark(filePath: bookmarkToDelete.filePath)
+        if success {
+            bookmarks.remove(at: indexPath.row)
         }
-        
-        let bookmarkToDelete = bookmarks[index]
-        if DBManager.shared.deleteBookmark(filePath: bookmarkToDelete.filePath) {
-            bookmarks.remove(at: index)
-            completion(.success(()))
-        } else {
-            completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to delete bookmark"])))
-        }
+        completion(success)
     }
 }
+
