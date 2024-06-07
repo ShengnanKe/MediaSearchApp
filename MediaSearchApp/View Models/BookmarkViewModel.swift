@@ -18,12 +18,11 @@ class BookmarkViewModel {
     func deleteBookmark(at indexPath: IndexPath, completion: @escaping (Bool) -> Void) {
         let bookmarkToDelete = bookmarks[indexPath.row]
 
-        if DBManager.shared.deleteBookmark(filePath: bookmarkToDelete.filePath) {
+        let success = DBManager.shared.deleteBookmark(filePath: bookmarkToDelete.filePath)
+        if success {
             bookmarks.remove(at: indexPath.row)
-            completion(true)
-        } else {
-            completion(false)
         }
+        completion(success)
     }
 }
 

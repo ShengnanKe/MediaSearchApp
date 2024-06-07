@@ -56,7 +56,6 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
         
         let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         
-        // Determine the appropriate folder (photos or videos) based on the file extension
         let folder: URL
         if bookmark.filePath.hasSuffix(".jpg") {
             folder = documentDirectory.appendingPathComponent("photos")
@@ -109,13 +108,7 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
             guard let self = self else { return }
             self.viewModel.deleteBookmark(at: indexPath) { success in
                 if success {
-                    self.bookmarkTableView.performBatchUpdates({
-                        self.bookmarkTableView.deleteRows(at: [indexPath], with: .automatic)
-                    }, completion: { _ in
-                        self.viewModel.fetchBookmarks {
-                            self.bookmarkTableView.reloadData()
-                        }
-                    })
+                    self.bookmarkTableView.deleteRows(at: [indexPath], with: .automatic)
                 }
                 completionHandler(success)
             }
