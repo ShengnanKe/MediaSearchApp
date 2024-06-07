@@ -1,14 +1,14 @@
 //
-//  ImageSearchViewModel.swift
+//  ImageSearchResultsViewModel.swift
 //  MediaSearchApp
 //
-//  Created by KKNANXX on 6/5/24.
+//  Created by KKNANXX on 6/6/24.
 //
 
 import Foundation
 
-class ImageSearchViewModel {
-    var searchResults: [MediaPhoto] = []
+class ImageSearchResultsViewModel {
+    var imageSearchResults: [MediaPhoto] = []
     var currentPage = 1
     var isFetching = false
     
@@ -27,8 +27,13 @@ class ImageSearchViewModel {
             switch result {
             case .success(let data):
                 do {
+                    // Print the raw JSON response
+//                    if let json = try? JSONSerialization.jsonObject(with: data, options: []) {
+//                        print("JSON Response: \(json)")
+//                    }
+                    
                     let searchResult = try JSONDecoder().decode(MediaSearchResult.self, from: data)
-                    self.searchResults.append(contentsOf: searchResult.photos)
+                    self.imageSearchResults.append(contentsOf: searchResult.photos)
                     self.currentPage += 1
                     completion(.success(()))
                 } catch {

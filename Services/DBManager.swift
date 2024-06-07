@@ -62,15 +62,28 @@ class DBManager: NSObject {
         
         do {
             let bookmarks = try managedContext.fetch(fetchRequest)
+            guard !bookmarks.isEmpty else {
+                print("No bookmarks found for filePath: \(filePath)")
+                return false
+            }
+            
             for bookmark in bookmarks {
                 managedContext.delete(bookmark)
             }
-            return saveData()
+            
+            if saveData() {
+                print("Successfully deleted bookmark(s) for filePath: \(filePath)")
+                return true
+            } else {
+                print("Failed to save context after deleting bookmark(s).")
+                return false
+            }
         } catch {
             print("Failed to fetch bookmarks for deletion: \(error)")
             return false
         }
     }
+
     
     func fetchBookmarks() -> [MediaBookmarkModel] {
         let fetchRequest: NSFetchRequest<MediaBookmark> = MediaBookmark.fetchRequest()

@@ -10,7 +10,7 @@ import UIKit
 class VideoSearchViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var videoSearchBar: UISearchBar!
-    var viewModel = VideoSearchViewModel()
+    //var viewModel = VideoSearchViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class VideoSearchViewController: UIViewController, UISearchBarDelegate {
            let resultsVC = segue.destination as? VideoSearchResultsViewController,
            let query = sender as? String {
             resultsVC.searchQuery = query
-            resultsVC.viewModel = viewModel
+            //resultsVC.viewModel = viewModel
         }
     }
 }

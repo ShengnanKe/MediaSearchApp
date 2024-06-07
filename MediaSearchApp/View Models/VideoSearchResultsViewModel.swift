@@ -1,14 +1,14 @@
 //
-//  VideoSearchViewModel.swift
+//  VideoSearchResultsViewModel.swift
 //  MediaSearchApp
 //
-//  Created by KKNANXX on 6/5/24.
+//  Created by KKNANXX on 6/6/24.
 //
 
 import Foundation
 
-class VideoSearchViewModel {
-    var searchResults: [MediaVideo] = []
+class VideoSearchResultViewModel {
+    var videoSearchResults: [MediaVideo] = []
     var currentPage = 1
     var isFetching = false
     
@@ -28,7 +28,7 @@ class VideoSearchViewModel {
             case .success(let data):
                 do {
                     let searchResult = try JSONDecoder().decode(VideoSearchResult.self, from: data)
-                    self.searchResults.append(contentsOf: searchResult.videos)
+                    self.videoSearchResults.append(contentsOf: searchResult.videos)
                     self.currentPage += 1
                     completion(.success(()))
                 } catch {

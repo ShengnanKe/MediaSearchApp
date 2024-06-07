@@ -13,7 +13,7 @@ class VideoSearchResultsViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var videoTableView: UITableView!
     
     var searchQuery: String?
-    var viewModel: VideoSearchViewModel! 
+    let viewModel = VideoSearchResultViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,9 @@ class VideoSearchResultsViewController: UIViewController, UITableViewDelegate, U
         videoTableView.dataSource = self
         
         videoTableView.rowHeight = 200
+        
+        let url = NSPersistentContainer.defaultDirectoryURL()
+        print("coredata_url: ", url)
         
         if let query = searchQuery {
             viewModel.searchVideos(query: query) { [weak self] result in
@@ -33,11 +36,13 @@ class VideoSearchResultsViewController: UIViewController, UITableViewDelegate, U
                     print("Error: \(error)")
                 }
             }
+        } else {
+            print("Search query is nil.")
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.searchResults.count
+        return viewModel.videoSearchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,20 +50,18 @@ class VideoSearchResultsViewController: UIViewController, UITableViewDelegate, U
             return UITableViewCell()
         }
         
-        let video = viewModel.searchResults[indexPath.row]
+        let video = viewModel.videoSearchResults[indexPath.row]
         cell.videoNameLabel.text = video.user.name
         
-        // Load image for the cell
         if let url = URL(string: video.image) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data, error == nil {
-                    DispatchQueue.main.async {
-                        cell.videoImageView.image = UIImage(data: data)
-                    }
+            CacheManager.shared.image(for: url) { image in
+                DispatchQueue.main.async {
+                    cell.videoImageView.image = image
                 }
-            }.resume()
+            }
         }
-        if indexPath.row == viewModel.searchResults.count - 1 && !viewModel.isFetching {
+        
+        if indexPath.row == viewModel.videoSearchResults.count - 1 && !viewModel.isFetching {
             viewModel.currentPage += 1
             if let query = searchQuery {
                 viewModel.searchVideos(query: query) { [weak self] result in
@@ -78,7 +81,7 @@ class VideoSearchResultsViewController: UIViewController, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedVideo = viewModel.searchResults[indexPath.row]
+        let selectedVideo = viewModel.videoSearchResults[indexPath.row]
         performSegue(withIdentifier: "showVideoDetails", sender: selectedVideo)
     }
     
@@ -91,5 +94,4 @@ class VideoSearchResultsViewController: UIViewController, UITableViewDelegate, U
             detailVC.viewModel = viewModel
         }
     }
-
 }

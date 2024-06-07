@@ -25,9 +25,7 @@ class ImageDetailViewController: UIViewController {
                     self?.photoImageView.image = image
                 }
             }
-        }
-        
-        if let bookmark = viewModel.bookmark {
+        } else if let bookmark = viewModel.bookmark {
             photoNameLabel.text = bookmark.name
             viewModel.loadImageBookmark(from: bookmark.filePath) { [weak self] image in
                 DispatchQueue.main.async {

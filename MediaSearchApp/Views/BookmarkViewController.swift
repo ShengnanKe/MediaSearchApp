@@ -86,7 +86,7 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
         
         return cell
     }
-
+    
     func generateThumbnail(path: String) -> UIImage? {
         let asset = AVAsset(url: URL(fileURLWithPath: path))
         let imageGenerator = AVAssetImageGenerator(asset: asset)
@@ -109,7 +109,13 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
             guard let self = self else { return }
             self.viewModel.deleteBookmark(at: indexPath) { success in
                 if success {
-                    self.bookmarkTableView.deleteRows(at: [indexPath], with: .automatic)
+                    self.bookmarkTableView.performBatchUpdates({
+                        self.bookmarkTableView.deleteRows(at: [indexPath], with: .automatic)
+                    }, completion: { _ in
+                        self.viewModel.fetchBookmarks {
+                            self.bookmarkTableView.reloadData()
+                        }
+                    })
                 }
                 completionHandler(success)
             }
@@ -143,5 +149,4 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-
 }

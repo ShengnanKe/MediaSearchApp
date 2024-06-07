@@ -14,7 +14,7 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var imageTableView: UITableView!
     
     var searchQuery: String?
-    var viewModel: ImageSearchViewModel!
+    let viewModel = ImageSearchResultsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.searchResults.count
+        return viewModel.imageSearchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,19 +49,19 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
             return UITableViewCell()
         }
         
-        let photo = viewModel.searchResults[indexPath.row]
+        let photo = viewModel.imageSearchResults[indexPath.row]
         cell.imageNameLabel.text = photo.alt
         
         if let url = URL(string: photo.src.small) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data, error == nil {
-                    DispatchQueue.main.async {
-                        cell.ImageView.image = UIImage(data: data)
-                    }
+            CacheManager.shared.image(for: url) { image in
+                DispatchQueue.main.async {
+                    cell.ImageView.image = image
                 }
-            }.resume()
+            }
         }
-        if indexPath.row == viewModel.searchResults.count - 1 && !viewModel.isFetching {
+        
+        // Load more images when reaching the end of the list
+        if indexPath.row == viewModel.imageSearchResults.count - 1 && !viewModel.isFetching {
             viewModel.currentPage += 1
             if let query = searchQuery {
                 viewModel.searchImages(query: query) { [weak self] result in
@@ -81,7 +81,7 @@ class ImageSearchResultsViewController: UIViewController, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedPhoto = viewModel.searchResults[indexPath.row]
+        let selectedPhoto = viewModel.imageSearchResults[indexPath.row]
         performSegue(withIdentifier: "showImageDetails", sender: selectedPhoto)
     }
     
